@@ -23,7 +23,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item,viewGroup,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_item,viewGroup,false);
         return new ViewHolder(v);
     }
 
@@ -49,14 +49,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textViewName;
-        public TextView textViewEmail;
+        TextView textViewName;
+        TextView textViewEmail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewName = (TextView) itemView.findViewById(R.id.name);
-            textViewName = (TextView) itemView.findViewById(R.id.email);
+            textViewEmail = (TextView) itemView.findViewById(R.id.email);
         }
     }
 }

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private MyAdapter adapter;
 
     private List<Listitem> listitems;
 
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = findViewById(R.id.recyclerview);
+       // recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listitems = new ArrayList<>();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                                 listitems.add(item);
                             }
 
-                            adapter = new MyAdapter(listitems, getApplicationContext());
+                            adapter = new MyAdapter(listitems, getBaseContext());
                             recyclerView.setAdapter(adapter);
 
                         } catch (JSONException e) {
