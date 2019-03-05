@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerview);
-       // recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listitems = new ArrayList<>();
@@ -63,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject o = array.getJSONObject(i);
                                 Listitem item = new Listitem(
                                         o.getString("name"),
-                                        o.getString("email")
+                                        o.getString("email"),
+                                        o.getString("address"),
+                                        o.getString("gender")
                                 );
                                 listitems.add(item);
                             }

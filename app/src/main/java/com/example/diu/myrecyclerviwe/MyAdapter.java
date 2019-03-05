@@ -1,11 +1,13 @@
 package com.example.diu.myrecyclerviwe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,16 +31,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Listitem listitem = listitems.get(i);
+        final Listitem listitem = listitems.get(i);
 
         viewHolder.textViewName.setText(listitem.getName());
         viewHolder.textViewEmail.setText(listitem.getEmail());
-
-//        viewHolder.textViewName.setText(listitem.getName());
-//        viewHolder.textViewEmail.setText(listitem.getEmail());
-
-//        viewHolder.textViewName.setText(listitem.getName());
-//        viewHolder.textViewEmail.setText(listitem.getEmail());
+        viewHolder.linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,DetailsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("name",listitem.getName());
+                intent.putExtra("email",listitem.getEmail());
+                intent.putExtra("address",listitem.getAddress());
+                intent.putExtra("gender",listitem.getGender());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -51,12 +59,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         TextView textViewName;
         TextView textViewEmail;
+        LinearLayout linear;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewName = (TextView) itemView.findViewById(R.id.name);
             textViewEmail = (TextView) itemView.findViewById(R.id.email);
+            linear = (LinearLayout) itemView.findViewById(R.id.linear);
         }
     }
 }
